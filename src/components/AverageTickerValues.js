@@ -83,7 +83,10 @@ let AverageTickerValue = () => {
 
     return (
        
-        <div className='text-center h-20 bg-warning p-3 rounded'><h2>{averageValue}</h2></div>
+        <div className='text-center h-20 bg-warning p-3 rounded'>
+            <h2 className='text-primary'>BTC</h2>
+            <h2>{averageValue.toFixed(2)} <span className='text-primary'>USD</span></h2>
+        </div>
        
     );
 }
