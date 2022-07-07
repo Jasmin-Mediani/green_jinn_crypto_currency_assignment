@@ -83,7 +83,7 @@ let AverageTickerValue = () => {
 
     return (
        
-        <div className='text-center h-20 bg-warning p-3 rounded'>{averageValue}</div>
+        <div className='text-center h-20 bg-warning p-3 rounded'><h2>{averageValue}</h2></div>
        
     );
 }
