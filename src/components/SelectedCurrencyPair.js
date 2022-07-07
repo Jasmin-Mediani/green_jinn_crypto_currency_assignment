@@ -39,17 +39,17 @@ const SelectedCurrencyPair = ({pairUrlSymbol}) => {
                 <div className="card">
                     <h3 className="text-center">{pairUrlSymbol}</h3>
                     <div className="card-body d-flex flex-row justify-content-between">
-                        <div className="d-flex justify-content-between flex-column">
-                            <h5 className="card-title" style={{ "width" : "400px" }}>high: {object.high}</h5>
-                            <h5 className="card-title" style={{ "width" : "400px" }}>ask: {object.ask}</h5>
-                            <h5 className="card-title" style={{ "width" : "400px" }}>bid: {object.bid}</h5>
-                            <h5 className="card-title" style={{ "width" : "400px" }}>last: {object.last}</h5>
+                        <div className="d-flex justify-content-between flex-column mr-2">
+                            <h5 className="card-title">high: {object.high}</h5>
+                            <h5 className="card-title">ask: {object.ask}</h5>
+                            <h5 className="card-title">bid: {object.bid}</h5>
+                            <h5 className="card-title">last: {object.last}</h5>
                         </div>
-                        <div className="d-flex justify-content-end flex-column align-items-end">
-                            <h5 className="card-title" style={{ "width" : "400px" }}>low: {object.low}</h5>
-                            <h5 className="card-title" style={{ "width" : "400px" }}>open: {object.open}</h5>
-                            <h5 className="card-title" style={{ "width" : "400px" }}>vwap: {object.vwap}</h5>
-                            <h5 className="card-title" style={{ "width" : "400px" }}>volume: {object.volume}</h5>
+                        <div className="d-flex flex-column ml-2">
+                            <h5 className="card-title">low: {object.low}</h5>
+                            <h5 className="card-title">open: {object.open}</h5>
+                            <h5 className="card-title">vwap: {object.vwap}</h5>
+                            <h5 className="card-title">volume: {object.volume}</h5>
                         </div>
                     </div>
                 </div>

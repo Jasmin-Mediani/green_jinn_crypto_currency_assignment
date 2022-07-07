@@ -38,7 +38,7 @@ let AverageTickerValue = () => {
 
         var average = sumOfTheExistingValues / usefulArray.length;
 
-        setAverageValue(average);
+        setAverageValue(average.toFixed(2));
     };
 
 
@@ -85,7 +85,7 @@ let AverageTickerValue = () => {
        
         <div className='text-center h-20 bg-warning p-3 rounded'>
             <h2 className='text-primary'>BTC</h2>
-            <h2>{averageValue.toFixed(2)} <span className='text-primary'>USD</span></h2>
+            <h2>{averageValue} <span className='text-primary'>USD</span></h2>
         </div>
        
     );
