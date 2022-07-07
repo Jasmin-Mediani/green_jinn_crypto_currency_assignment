@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import AverageTickerValue from './components/AverageTickerValues';
+import TradingPairs from './components/TradingPairs';
+
+
 
 function App() {
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className="container-fluid" style={{ "backgroundColor" : "pink", "height": "100vh" }}>
+        <div className="row h-100">
+          <div className="col-md-6 col-sm-12 bg-primary align-items-center d-flex justify-content-center flex-column">
+            <AverageTickerValue></AverageTickerValue>
+           
+          </div>
+
+
+          <div className="col-md-6 col-sm-12 bg-warning">
+
+            
+            <div className="row">
+              <TradingPairs></TradingPairs>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      
     </div>
   );
 }
