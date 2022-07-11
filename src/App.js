@@ -6,7 +6,6 @@ import TradingPairs from './components/TradingPairs';
 
 function App() {
   
-
   return (
     <div className="App">
 
