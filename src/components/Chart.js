@@ -30,7 +30,7 @@ import axios from "axios";
 const Chart = () => {
 
     const [chartData, setChartData] = useState({
-      labels: ["10s", "20s", "30s", "40s", "50s", "60s", "70s", "80s", "90s", "100s"],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
+      labels: [0],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
       datasets: [{
           label: "Testo",
           data: [],
@@ -61,20 +61,15 @@ const Chart = () => {
             //while (ArrayPerChartData.length < 10) {
 
               let response = await axios.get('https://www.bitstamp.net/api/v2/ticker/btcusd');
+              ;
 
+            setChartData((prevChartData) => {
+              var labelsLastTenSeconds = prevChartData.labels[prevChartData.labels.length-1] + 10;
 
-            //   setChartData({
-            //     labels: ["10s", "20s", "30s", "40s", "50s", "60s", "70s", "80s", "90s", "100s"],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
-            //     datasets: [{
-            //         label: "Testo",
-            //         data: [15, 32, 13, 64, 25, 86, 47, 18, 5, 58],
-                    
-            //         borderColor: "rgb(80, 132, 135)",
-            //         backgroundColor: "rgba(80, 132, 135, 0.4)",
-            //     }],
-            // });
-            setChartData((prevChartData) => ({
-              labels: prevChartData.labels,
+              console.log(prevChartData.labels)
+
+              return { //setState has a lambda which automatically takes the previous state as argument
+              labels: [...prevChartData.labels, labelsLastTenSeconds], //every 10 seconds... 10, 20, 30, 40 etc...
               datasets: [{
                   label: prevChartData.datasets[0].label,
                   data: [...prevChartData.datasets[0].data, response.data.last],
@@ -82,25 +77,7 @@ const Chart = () => {
                   borderColor: prevChartData.datasets[0].borderColor,
                   backgroundColor: prevChartData.datasets[0].backgroundColor,
               }],
-          }));
-
-
-
-            //} 
-    
-    
-            // setChartData({
-            //     labels: ["10s", "20s", "30s", "40s", "50s", "60s", "70s", "80s", "90s", "100s"],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
-            //     datasets: [{
-            //         label: "Testo",
-            //         data: [15, 32, 13, 64, 25, 86, 47, 18, 5, 58],
-                    
-            //         borderColor: "rgb(80, 132, 135)",
-            //         backgroundColor: "rgba(80, 132, 135, 0.4)",
-            //     }],
-            // });
-
-            
+          }});
             
         }, 5000);
         
