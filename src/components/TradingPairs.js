@@ -63,7 +63,7 @@ const TradingPairs = () => {
                 }
             </div>
 
-            <div style={{ "paddingTop" : "30px", 'height' : "10vh" }}>
+            <div style={{ "paddingTop" : "30px", 'height' : "10vh" }} className="" >
                 { pairUrlSymbol && <SelectedCurrencyPair pairUrlSymbol={pairUrlSymbol}></SelectedCurrencyPair> }
                 { !pairUrlSymbol && <p className='text-center'>Click one of the cards above to render this component </p>}
             </div>

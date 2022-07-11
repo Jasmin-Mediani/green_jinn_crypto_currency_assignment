@@ -35,3 +35,9 @@
     border-radius: 8px;
     background-color: #5084B9;
 }
+
+#card {
+    /* width: fit-content; */
+    width: 400px;
+    margin: 0 auto;
+}

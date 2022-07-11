@@ -36,7 +36,7 @@ const SelectedCurrencyPair = ({pairUrlSymbol}) => {
     return (
         object !== "" ? 
             <div>
-                <div className="card">
+                <div className="card" id="card">
                     <h3 className="text-center">{pairUrlSymbol}</h3>
                     <div className="card-body d-flex flex-row justify-content-between">
                         <div className="d-flex justify-content-between flex-column mr-2">

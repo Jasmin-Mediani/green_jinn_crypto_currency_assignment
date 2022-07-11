@@ -103,7 +103,6 @@ const Chart = () => {
 
     return (
         <div className="clearfix h-30" style={{ "marginTop" : "30px", "margin" : "30px auto 0px auto"}}>
-            {/* <Bar options={chartOptions} data={chartData} style={{ "height" : "300px"}}/> */}
             <Line options={chartOptions} data={chartData} style={{ "height" : "25vh"}}/>
         </div>
     )
