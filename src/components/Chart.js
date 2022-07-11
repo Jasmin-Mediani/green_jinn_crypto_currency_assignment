@@ -30,7 +30,7 @@ import axios from "axios";
 const Chart = () => {
 
     const [chartData, setChartData] = useState({
-      labels: [0],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
+      labels: ['0', '10', '20', '30', '40', '50', '60'],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
       datasets: [{
           label: "Testo",
           data: [],
@@ -50,36 +50,28 @@ const Chart = () => {
 
         const interval = setInterval( async function(){
 
-            //the array will show only the last 10 values. Every 10 values it becomes empty.
-            // if (datasetArrayFromInterval.length = 10){
-            //     datasetArrayFromInterval = [];
-            // }
-    
-            //let response = axios.get('https://www.bitstamp.net/api/v2/ticker/btcusd');
-            
-            //let ArrayPerChartData = [];
-            //while (ArrayPerChartData.length < 10) {
-
               let response = await axios.get('https://www.bitstamp.net/api/v2/ticker/btcusd');
-              ;
 
-            setChartData((prevChartData) => {
+              setChartData((prevChartData) => {
               var labelsLastTenSeconds = prevChartData.labels[prevChartData.labels.length-1] + 10;
 
-              console.log(prevChartData.labels)
+              //if the labels are > 9 clear the interval;
+              if (prevChartData.datasets[0].data.length > 6){ // 6 is 60 seconds
+                prevChartData.datasets[0].data.pop(); //= prevChartData.datasets[0].data.pop(); //I remove the last element of the new array
+              }
 
               return { //setState has a lambda which automatically takes the previous state as argument
-              labels: [...prevChartData.labels, labelsLastTenSeconds], //every 10 seconds... 10, 20, 30, 40 etc...
+              labels: prevChartData.labels, //every 10 seconds... 10, 20, 30, 40 etc...
               datasets: [{
                   label: prevChartData.datasets[0].label,
-                  data: [...prevChartData.datasets[0].data, response.data.last],
+                  data: [response.data.last, ...prevChartData.datasets[0].data], //I prepended the new value to have it on the right of the chart, the X axe will be inverted so It will be the first value on the right 
                   
                   borderColor: prevChartData.datasets[0].borderColor,
-                  backgroundColor: prevChartData.datasets[0].backgroundColor,
+                  backgroundColor: prevChartData.datasets[0].backgroundColor, 
               }],
           }});
             
-        }, 5000);
+        }, 10000);
         
         setChartOptions({
           responsive: true,
@@ -92,7 +84,16 @@ const Chart = () => {
               display: true,
               text: "Testo prova"
             }
+          },
+
+          //I Inverted the X axe to have the chart readable (from right to left);
+          scales: {
+            x: {
+                reverse: true,
+  
+            }
           }
+
         })
     }, []);
 
