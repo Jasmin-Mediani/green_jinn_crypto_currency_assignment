@@ -33,8 +33,7 @@ const Chart = () => {
       labels: ['0', '10', '20', '30', '40', '50', '60'],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
       datasets: [{
           label: "Testo",
-          data: [],
-          
+          data: [],         
           borderColor: "rgb(80, 132, 135)",
           backgroundColor: "rgba(80, 132, 135, 0.4)",
       }],
@@ -77,11 +76,10 @@ const Chart = () => {
           responsive: true,
           plugins: {
             legend: {
-              position: "top",
-              height: "150px",
+             display: false
             },
             title: {
-              display: true,
+              display: false,
               text: "Testo prova"
             }
           },
