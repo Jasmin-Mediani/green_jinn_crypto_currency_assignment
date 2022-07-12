@@ -40,13 +40,13 @@ const GJNumbersView = ({pairUrlSymbol}) => {
                 <div className="card" id="card">
                     <h3 className="text-center">{pairUrlSymbol}</h3>
                     <div className="card-body d-flex flex-row justify-content-between">
-                        <div className="d-flex justify-content-between flex-column mr-2">
+                        <div className="d-flex justify-content-between flex-column" style={{ "marginRight" : "20px" }}>
                             <GJNumberLabel string="high" value={object.high}></GJNumberLabel>
                             <GJNumberLabel string="ask" value={object.ask}></GJNumberLabel>
                             <GJNumberLabel string="bid" value={object.bid}></GJNumberLabel>
                             <GJNumberLabel string="last" value={object.last}></GJNumberLabel>
                         </div>
-                        <div className="d-flex flex-column ml-2">
+                        <div className="d-flex flex-column ml-2" style={{ "marginLeft":"30px" }}>
                             <GJNumberLabel string="low" value={object.low}></GJNumberLabel>
                             <GJNumberLabel string="open" value={object.open}></GJNumberLabel>
                             <GJNumberLabel string="vwap" value={object.vwap}></GJNumberLabel>
