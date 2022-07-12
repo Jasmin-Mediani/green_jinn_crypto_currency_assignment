@@ -1,7 +1,13 @@
-# Install dependencies
+## Prerequisites
+### node.js installed
 
-## `npm install`
+------------------------
+
+## Install dependencies
+
+### `npm install`
 ----------------------------
+
 ## Run the project
 
 ### `npm run start`
