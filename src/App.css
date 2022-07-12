@@ -43,10 +43,16 @@ body,
     margin-top: 30px;
 }
 
-
-/* @media screen and (max-width: 450px) {
+@media screen and (max-width: 450px) {
     #chart {
-        width: 400px;
-        padding-right: 30px !important;
+        width: 350px;
+        /* padding-right: 30px !important; */
     }
-} */
+    #card .card-title {
+        font-size: 1rem;
+    }
+    #card {
+        /* width: fit-content; */
+        max-width: 350px;
+    }
+}
