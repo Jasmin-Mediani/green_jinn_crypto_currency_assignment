@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
 
-      <div className="container-fluid" style={{ "backgroundColor" : "pink", "height": "100vh", "maxHeight" : "100vh" }}>
+      <div className="container-fluid clearfix" style={{ "backgroundColor" : "pink", "height": "100vh", "maxHeight" : "100vh" }}>
         <div className="row h-100">
           <div className="col-md-6 col-sm-12 bg-primary align-items-center d-flex justify-content-center flex-column">
             <AverageTickerValue></AverageTickerValue>

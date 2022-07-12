@@ -1,5 +1,6 @@
-body {
-    overflow-x: hidden;
+body,
+#app {
+    overflow-x: hidden !important;
 }
 
 .custom-card {
@@ -8,11 +9,6 @@ body {
     margin: 10px;
     max-width: 200px;
 }
-
-
-/* .bg-info {
-    background-color: #0C6EFD !important;
-} */
 
 .custom-card:active {
     background-color: #0c6cfdb8;
@@ -46,3 +42,11 @@ body {
     margin: 0 auto;
     margin-top: 30px;
 }
+
+
+/* @media screen and (max-width: 450px) {
+    #chart {
+        width: 400px;
+        padding-right: 30px !important;
+    }
+} */
