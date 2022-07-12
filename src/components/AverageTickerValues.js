@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import response2 from './response.json';
 import storedBitFinexResponse from './responseBitfinex.json';
 
 let AverageTickerValue = () => {
@@ -68,11 +67,12 @@ let AverageTickerValue = () => {
 
     }
    
-    const callBitfinex = () => {
+    const callBitfinex = /* async */ () => {
 
         
         /********************************************* Call to get the third value... due to CORS POLICY PROBLEMS THIS ONE WAS A BIT CUMBERSOME! ******************************************** */
-        //let response3 = await axios.get('https://api-pub.bitfinex.com/v2/tickers?symbols=tBTCUSD'); //this API is not working... I have to use imported datas from it (stored as json file inside this project)
+        //let responseBitFinex = await axios.get('https://api-pub.bitfinex.com/v2/tickers?symbols=tBTCUSD'); //this API is not working... I have to use imported datas from it (stored as json file inside this project)
+        //return responseBitFinex[0][1];
 
         return storedBitFinexResponse[0][1]; //do I have to take the first value?
        
@@ -83,7 +83,7 @@ let AverageTickerValue = () => {
 
     return (
        
-        <div className='text-center h-20 bg-warning p-3 rounded'>
+        <div className='text-center h-20 bg-warning p-3 rounded' style={{ 'marginTop':"30px", "marginBottom":"30px" }}>
             <h2 className='text-primary'>BTC</h2>
             <h2>{averageValue} <span className='text-primary'>USD</span></h2>
         </div>

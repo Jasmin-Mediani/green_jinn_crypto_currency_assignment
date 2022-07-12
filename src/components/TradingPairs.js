@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import response from "./pairs.json"
 import axios from 'axios';
-import SelectedCurrencyPair from './SelectedCurrencyPair';
+import GJNumbersView from './GJNumberView';
 
 const TradingPairs = () => {
 
@@ -50,23 +49,25 @@ const TradingPairs = () => {
     return(
 
         <div>
-            <div style={{ "height" : "35vh", 'overflow' : 'auto', 'display' : "flex", "flexWrap" : "wrap", 'marginTop' : "20px" }}>
-                { pairs.map((pair, index) => {
-                        // return <div className={active ? "card custom-card bg-info" : "card custom-card"} key={index} onClick={(event) => {setPairUrlSymbol(pair.url_symbol); activeCard(event)}} role="button">
-                        return <button className="card custom-card" key={index} onClick={(event) => {setPairUrlSymbol(pair.url_symbol); /*colored(event)*/}}>
-                            <div className="card-body">
-                                <h4 className="card-title">{pair.url_symbol}</h4>
-                                <p className="card-text">{pair.name}</p>
-                            </div>
-                        </button>
-                    })
-                }
-            </div>
+            {pairs.length > 0 ? <div>
+                <div style={{ "height" : "35vh", 'overflow' : 'auto', 'display' : "flex", "flexWrap" : "wrap", 'marginTop' : "20px" }}>
+                    { pairs.map((pair, index) => {
+                            // return <div className={active ? "card custom-card bg-info" : "card custom-card"} key={index} onClick={(event) => {setPairUrlSymbol(pair.url_symbol); activeCard(event)}} role="button">
+                            return <button className="card custom-card" key={index} onClick={(event) => {setPairUrlSymbol(pair.url_symbol); /*colored(event)*/}}>
+                                <div className="card-body">
+                                    <h4 className="card-title">{pair.url_symbol}</h4>
+                                    <p className="card-text">{pair.name}</p>
+                                </div>
+                            </button>
+                        })
+                    }
+                </div>
 
-            <div style={{ "paddingTop" : "30px", 'height' : "10vh" }} className="" >
-                { pairUrlSymbol && <SelectedCurrencyPair pairUrlSymbol={pairUrlSymbol}></SelectedCurrencyPair> }
-                { !pairUrlSymbol && <p className='text-center'>Click one of the cards above to render this component </p>}
-            </div>
+                <div >
+                    { pairUrlSymbol && <GJNumbersView pairUrlSymbol={pairUrlSymbol}></GJNumbersView> }
+                    { !pairUrlSymbol && <p className='text-center'>Click one of the cards above to render this component </p>}
+                </div>
+            </div> : <p className='text-center'> Trying to fetch some data. If nothing appears, please reload this page</p>  }
         </div>
     )
 
