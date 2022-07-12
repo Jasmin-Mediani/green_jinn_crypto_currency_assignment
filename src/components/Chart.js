@@ -56,7 +56,7 @@ const Chart = () => {
 
               //if the labels are > 9 clear the interval;
               if (prevChartData.datasets[0].data.length > 6){ // 6 is 60 seconds
-                prevChartData.datasets[0].data.pop(); //= prevChartData.datasets[0].data.pop(); //I remove the last element of the new array
+                prevChartData.datasets[0].data.pop(); //I remove the last element of the new array
               }
 
               return { //setState has a lambda which automatically takes the previous state as argument

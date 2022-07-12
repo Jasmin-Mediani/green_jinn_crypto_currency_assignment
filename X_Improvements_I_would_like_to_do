@@ -1,10 +1,6 @@
 In tradingPairs.js I'd like to have *only* the selected card with a different background color (I would like to make it become like a bootstrap active item... the best I could do for now is to color it via hover but in order to have a good UX/UI it's not enough)
 
 
-The Chart in Chart.js could be better. It was the toughest part to do, but I see it can be improved: I would like to make the Chart to reload after 1 minute or - even better - to constantly update its values so that the last value always disappears after the new one has been added 
-[... guess it's a combination of .shift()/.pop() and .append()/.prepend()]
-
-
 The first value of the Chart should appear 1 second after clicking the pair... now it starts after 10 seconds as set in setInterval...
 
 
