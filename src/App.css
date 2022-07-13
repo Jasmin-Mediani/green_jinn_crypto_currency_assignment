@@ -1,58 +1,60 @@
 body,
 #app {
-    overflow-x: hidden !important;
+  overflow-x: hidden !important;
 }
 
 .custom-card {
-    width: 150px;
-    flex-grow: 1;
-    margin: 10px;
-    max-width: 200px;
+  width: 150px;
+  flex-grow: 1;
+  margin: 10px;
+  max-width: 200px;
 }
 
 .custom-card:active {
-    background-color: #0c6cfdb8;
+  background-color: #0c6cfdb8;
 }
 
 .custom-card:hover {
-    background-color: #0c6cfdb8;
+  background-color: #0c6cfdb8;
 }
 
 .clearfix {
-    display: table;
-    content: "";
-    clear: both;
+  display: table;
+  content: "";
+  clear: both;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 10px;
-    background: #82b4ff8f;
-    border-radius: 8px;
+  width: 8px;
+  height: 10px;
+  background: #82b4ff8f;
+  border-radius: 8px;
 }
 
- ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #5084B9;
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #5084b9;
 }
 
 #card {
-    /* width: fit-content; */
-    max-width: 400px;
-    margin: 0 auto;
-    margin-top: 30px;
+  /* width: fit-content; */
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+#card .card-title {
+  font-size: 100%;
 }
 
 @media screen and (max-width: 450px) {
-    #chart {
-        width: 350px;
-        /* padding-right: 30px !important; */
-    }
-    #card .card-title {
-        font-size: 1rem;
-    }
-    #card {
-        /* width: fit-content; */
-        max-width: 350px;
-    }
+  #chart {
+    width: 350px;
+    /* padding-right: 30px !important; */
+  }
+
+  #card {
+    /* width: fit-content; */
+    max-width: 350px;
+  }
 }

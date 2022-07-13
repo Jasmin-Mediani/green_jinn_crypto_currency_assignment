@@ -1,109 +1,144 @@
-import React, {useState, useEffect} from "react";
-
+import React, { useState, useEffect } from "react";
 
 /*************** LINE CHART *************** */
 
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
-  import { Line } from 'react-chartjs-2';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 import axios from "axios";
-  
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-const Chart = () => {
+const Chart = ({ pairUrlSymbol }) => {
+  const [chartOptions, setChartOptions] = useState({});
 
-    const [chartData, setChartData] = useState({
-      labels: ['0', '10', '20', '30', '40', '50', '60'],  //ogni 10 secondi... 10, 20, 30, 40 ecc...
-      datasets: [{
-          label: "Testo",
-          data: [],         
-          borderColor: "rgb(80, 132, 135)",
-          backgroundColor: "rgba(80, 132, 135, 0.4)",
-      }],
+  const [chartData, setChartData] = useState({
+    labels: ["0", "10", "20", "30", "40", "50", "60"], //ogni 10 secondi... 10, 20, 30, 40 ecc...
+    datasets: [
+      {
+        label: "Testo",
+        data: [],
+        borderColor: "rgb(80, 132, 135)",
+        backgroundColor: "rgba(80, 132, 135, 0.4)",
+      },
+    ],
   });
 
-    const [values, setValues] = useState([]);
+  useEffect(() => {
+    /**** Call to set the first Chart value ****/
+    firstResponse();
 
-    // let datasetArrayFromInterval = [];
-    
-    const [chartOptions, setChartOptions] = useState({})
-    
-    useEffect(() =>{
+    /*********** Other calls to populate the Chart ******/
+    const interval = setInterval(async function () {
+      let response = await axios.get(
+        "https://www.bitstamp.net/api/v2/ticker/btcusd"
+      );
 
-        const interval = setInterval( async function(){
+      setChartData((prevChartData) => {
+        var labelsLastTenSeconds =
+          prevChartData.labels[prevChartData.labels.length - 1] + 10;
 
-              let response = await axios.get('https://www.bitstamp.net/api/v2/ticker/btcusd');
+        //if the labels are > 9 clear the interval;
+        if (prevChartData.datasets[0].data.length > 6) {
+          // 6 is 60 seconds
+          prevChartData.datasets[0].data.pop(); //I remove the last element of the new array
+        }
 
-              setChartData((prevChartData) => {
-              var labelsLastTenSeconds = prevChartData.labels[prevChartData.labels.length-1] + 10;
+        return {
+          //setState has a lambda which automatically takes the previous state as argument
+          labels: prevChartData.labels, //every 10 seconds... 10, 20, 30, 40 etc...
+          datasets: [
+            {
+              label: prevChartData.datasets[0].label,
+              data: [response.data.last, ...prevChartData.datasets[0].data], //I prepended the new value to have it on the right of the chart, the X axe will be inverted so It will be the first value on the right
 
-              //if the labels are > 9 clear the interval;
-              if (prevChartData.datasets[0].data.length > 6){ // 6 is 60 seconds
-                prevChartData.datasets[0].data.pop(); //I remove the last element of the new array
-              }
-
-              return { //setState has a lambda which automatically takes the previous state as argument
-              labels: prevChartData.labels, //every 10 seconds... 10, 20, 30, 40 etc...
-              datasets: [{
-                  label: prevChartData.datasets[0].label,
-                  data: [response.data.last, ...prevChartData.datasets[0].data], //I prepended the new value to have it on the right of the chart, the X axe will be inverted so It will be the first value on the right 
-                  
-                  borderColor: prevChartData.datasets[0].borderColor,
-                  backgroundColor: prevChartData.datasets[0].backgroundColor, 
-              }],
-          }});
-            
-        }, 10000);
-        
-        setChartOptions({
-          responsive: true,
-          plugins: {
-            legend: {
-             display: false
+              borderColor: prevChartData.datasets[0].borderColor,
+              backgroundColor: prevChartData.datasets[0].backgroundColor,
             },
-            title: {
-              display: false,
-              text: "Testo prova"
-            }
+          ],
+        };
+      });
+    }, 10000);
+
+    setChartOptions({
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: false,
+          text: "Testo prova",
+        },
+      },
+
+      //I Inverted the X axe to have the chart readable (from right to left);
+      scales: {
+        x: {
+          reverse: true,
+        },
+      },
+    });
+  }, [pairUrlSymbol]);
+
+  let firstResponse = async () => {
+    try {
+      let response = await axios.get(
+        "https://www.bitstamp.net/api/v2/ticker/btcusd"
+      );
+
+      let firstValueInsideChart = response.data.last;
+
+      setChartData({
+        labels: ["0", "10", "20", "30", "40", "50", "60"], //ogni 10 secondi... 10, 20, 30, 40 ecc...
+        datasets: [
+          {
+            label: "Testo",
+            data: [firstValueInsideChart],
+            borderColor: "rgb(80, 132, 135)",
+            backgroundColor: "rgba(80, 132, 135, 0.4)",
           },
+        ],
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-          //I Inverted the X axe to have the chart readable (from right to left);
-          scales: {
-            x: {
-                reverse: true,
-  
-            }
-          }
+  return (
+    <div
+      className="h-30"
+      style={{
+        marginTop: "30px",
+        margin: "30px auto 0px auto",
+        paddingBottom: "30px",
+        width: "80%",
+      }}
+      id="chart"
+    >
+      <Line
+        options={chartOptions}
+        data={chartData}
+        style={{ height: "25vh" }}
+      />
+    </div>
+  );
+};
 
-        })
-    }, []);
-
-
-   
-
-
-    return (
-        <div className="h-30" style={{ "marginTop" : "30px", "margin" : "30px auto 0px auto", "paddingBottom": "30px"}} id="chart">
-            <Line options={chartOptions} data={chartData} style={{ "height" : "25vh"}}/>
-        </div>
-    )
-}
-
-export default Chart
+export default Chart;
